@@ -7,10 +7,32 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Link } from "react-router-dom";
+import userImg from "../../assets/profile/default-user.jpg"
 const NavBar = () => {
   return (
     <div className="navbar">
-      navbar
+      <div className="left">
+        <Link to="/" style={{textDecoration:"none"}}>
+        <span>Sociolane</span>
+        </Link>
+        <HomeOutlinedIcon/>
+        <DarkModeOutlinedIcon/>
+        <GridViewOutlinedIcon/>
+        <div className="search">
+          <SearchOutlinedIcon/>
+          <input type="text" placeholder="Search..."/>
+        </div>
+      </div>
+      <div className="right">
+        <PersonOutlineOutlinedIcon/>
+        <EmailOutlinedIcon/>
+        <NotificationsNoneOutlinedIcon/>
+        <div className="user">
+          <img src={userImg} alt="" />
+          <span>Prakash</span>
+        </div>
+      </div>
     </div>
   )
 }
