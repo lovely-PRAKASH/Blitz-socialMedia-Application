@@ -2,8 +2,51 @@ import "./home.scss"
 
 const Home = () => {
   return (
-    <div>
-      home
+    <div className="home">
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+    <h1>home</h1>
+
     </div>
   )
 }
