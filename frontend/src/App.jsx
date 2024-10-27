@@ -4,18 +4,20 @@ import Login from './pages/login/Login'
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 import NavBar from './components/navBar/navBar'
 import LeftBar from './components/leftBar/leftBar'
-import RightBar from './components/rightBar/rightBar'
+import RightBar from './components/rightBar/RightBar'
 import Home from './pages/home/Home'
 import Profile from "../src/pages/profile/Profile"
 const App = () => {
   const currentUser = true;
   const Layout = () => {
     return (
-      <div>
+      <div className='theme-dark'>
         <NavBar />
         <div style={{ display: "flex" }}>
           <LeftBar />
+          <div style={{flex:6}}>
           <Outlet />
+          </div>
           <RightBar />
         </div>
       </div>
