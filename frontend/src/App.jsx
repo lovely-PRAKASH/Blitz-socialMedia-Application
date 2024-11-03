@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Register from './pages/register/Register'
 import Login from './pages/login/Login'
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
@@ -7,11 +7,15 @@ import LeftBar from './components/leftBar/leftBar'
 import RightBar from './components/rightBar/RightBar'
 import Home from './pages/home/Home'
 import Profile from "../src/pages/profile/Profile"
+import { DarkModeContext } from './context/DarkModeContext'
+import { AuthContext } from './context/AuthContext'
 const App = () => {
-  const currentUser = true;
+  const {currentUser} = useContext(AuthContext);
+  const {darkMode}=useContext(DarkModeContext);
+ 
   const Layout = () => {
     return (
-      <div className='theme-dark'>
+      <div className={`theme-${darkMode ? "dark":"light"}`}>
         <NavBar />
         <div style={{ display: "flex" }}>
           <LeftBar />
@@ -23,6 +27,7 @@ const App = () => {
       </div>
     )
   }
+
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
       return <Navigate to="/login" />
