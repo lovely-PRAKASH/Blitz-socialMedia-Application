@@ -9,28 +9,37 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Link } from "react-router-dom";
 import userImg from "../../assets/profile/default-user.jpg"
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/DarkModeContext";
+import { AuthContext } from "../../context/AuthContext";
 const NavBar = () => {
+  const { currentUser } = useContext(AuthContext);
+  const { toggle, darkMode } = useContext(DarkModeContext);
   return (
     <div className="navbar">
       <div className="left">
-        <Link to="/" style={{textDecoration:"none"}}>
-        <span>Sociolane</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span>Sociolane</span>
         </Link>
-        <HomeOutlinedIcon/>
-        <DarkModeOutlinedIcon/>
-        <GridViewOutlinedIcon/>
+        <HomeOutlinedIcon />
+        {
+          darkMode ? <WbSunnyOutlinedIcon style={{ color: "#FDB813", cursor: "pointer" }} onClick={toggle} /> :
+            <DarkModeOutlinedIcon style={{ color: "#B4B7B6", cursor: "pointer" }} onClick={toggle} />
+        }
+
+        <GridViewOutlinedIcon />
         <div className="search">
-          <SearchOutlinedIcon/>
-          <input type="text" placeholder="Search..."/>
+          <SearchOutlinedIcon />
+          <input type="text" placeholder="Search..." />
         </div>
       </div>
       <div className="right">
-        <PersonOutlineOutlinedIcon/>
-        <EmailOutlinedIcon/>
-        <NotificationsNoneOutlinedIcon/>
+        <PersonOutlineOutlinedIcon />
+        <EmailOutlinedIcon />
+        <NotificationsNoneOutlinedIcon />
         <div className="user">
-          <img src={userImg} alt="" />
-          <span>Prakash</span>
+          <img src={currentUser.profilePic} alt="profile" />
+          <span>{currentUser.name}</span>
         </div>
       </div>
     </div>
