@@ -1,0 +1,12 @@
+@import "../../style.scss";
+
+.profile{
+    @include themify($themes){
+        background-color: themed("bgSoft");
+
+        .images{
+            .cover{}
+            .profilePic{}
+        }
+    }
+}
