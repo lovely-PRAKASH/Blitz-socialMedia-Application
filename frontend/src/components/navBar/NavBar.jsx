@@ -24,7 +24,7 @@ const NavBar = () => {
         <HomeOutlinedIcon />
         {
           darkMode ? <WbSunnyOutlinedIcon style={{ color: "#FDB813", cursor: "pointer" }} onClick={toggle} /> :
-            <DarkModeOutlinedIcon style={{ color: "#B4B7B6", cursor: "pointer" }} onClick={toggle} />
+            <DarkModeOutlinedIcon style={{ cursor: "pointer" }} onClick={toggle} />
         }
 
         <GridViewOutlinedIcon />
