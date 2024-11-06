@@ -1,0 +1,40 @@
+@import "../../style.scss";
+
+.share {
+    @include themify($themes) {
+        background-color: themed("bg");
+        padding: 10px;
+        margin-bottom: 10px;
+        .container {
+            .top {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                input{
+                    width: 100%;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    color: themed("textColor");
+                    font-size: 14px;
+                }
+            }
+            .bottom{
+                .left{
+                    .item{
+
+                    }
+                }
+                .right{
+                    
+                }
+            }
+        }
+    }
+}
