@@ -1,8 +1,9 @@
 import express from "express";
-import {  } from "../controllers/postControllers.js";
+import { addPost, getPosts } from "../controllers/postControllers.js";
 
 const router=express.Router();
 
-router.get("",)
+router.get("/",getPosts)
+router.get("/", addPost)
 
 export default router;
