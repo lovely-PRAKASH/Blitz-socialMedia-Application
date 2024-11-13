@@ -11,11 +11,12 @@ import { DarkModeContext } from './context/DarkModeContext'
 import { AuthContext } from './context/AuthContext'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+const queryclient = new QueryClient();
+
 const App = () => {
   const { currentUser } = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
 
-  const queryclient = new QueryClient();
 
   const Layout = () => {
     return (
