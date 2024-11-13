@@ -1,20 +1,27 @@
 import { makeRequest } from "../../../axios";
 import Post from "../post/Post";
-import "./posts.scss"
-import {useQuery} from '@tanstack/react-query'
+import "./posts.scss";
+import { useQuery } from '@tanstack/react-query';
+
 const Posts = () => {
-const {isLoading, error, data}=useQuery(['posts'],()=>
-makeRequest.get("/posts").then((res)=>{
-  return res.data;
-}))
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['posts'],
+    queryFn: () => makeRequest.get("/posts").then((res) => res.data),
+  });
+
+  console.log(data);
 
   return (
     <div className="posts">
-      {data.map((post)=>(
-        <Post post={post} key={post.id}/>
-      ))}
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error loading posts.</p>
+      ) : (
+        data.map((post) => <Post post={post} key={post.id} />)
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Posts
+export default Posts;
