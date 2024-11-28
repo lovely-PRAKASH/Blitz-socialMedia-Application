@@ -18,7 +18,7 @@ const Posts = () => {
       ) : error ? (
         <p style={{display:"flex", alignItems:"center", justifyContent:"center"}}>Error loading posts.</p>
       ) : (
-        data.map((post) => <Post post={post} key={post.id} />)
+        data?.map((post) => <Post post={post} key={post.id} />)
       )}
     </div>
   );
