@@ -12,9 +12,11 @@ import Posts from "../../components/posts/Posts";
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { makeRequest } from '../../../axios';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
 
 const Profile = () => {
-
+const {currentUser}=useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
 
   const { isLoading, error, data } = useQuery({
@@ -62,7 +64,7 @@ const Profile = () => {
                 <span>{data.website}</span>
               </div>
             </div>
-            <button>Follow</button>
+           {userId===currentUser.id?(<button>Update</button>): <button>Follow</button>}
           </div>
           <div className="right">
             <EmailOutlinedIcon />
