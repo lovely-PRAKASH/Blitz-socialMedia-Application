@@ -13,9 +13,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { makeRequest } from '../../../axios';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import Update from '../../components/update/Update';
 
 const Profile = () => {
+  const [openUpdate, setOpenUpdate]=useState(false);
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
 console.log("current user",currentUser)
@@ -110,6 +112,7 @@ console.log("current user",currentUser)
           <Posts userId={userId}/>
         </div>
       </div>}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate}/>}
     </>
   )
 }
