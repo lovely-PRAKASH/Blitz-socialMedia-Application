@@ -18,7 +18,7 @@ import { useContext } from 'react';
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
-
+console.log("current user",currentUser)
   const { isLoading, error, data } = useQuery({
     queryKey: ['user'],
     queryFn: () => makeRequest.get("/users/find/" + userId).then((res) => (res.data)),
@@ -26,7 +26,7 @@ const Profile = () => {
 
   const { isLoading: rIsLoading, data: relationshipData } = useQuery({
     queryKey: ['relationship'],
-    queryFn: () => makeRequest.get("/relationships?followedUserId" + userId).then((res) => (res.data)),
+    queryFn: () => makeRequest.get("/relationships?followedUserId=" + userId).then((res) => (res.data)),
   });
   console.log("relationships", relationshipData);
 
@@ -107,7 +107,7 @@ const Profile = () => {
               <MoreVertIcon />
             </div>
           </div>
-          <Posts />
+          <Posts userId={userId}/>
         </div>
       </div>}
     </>
