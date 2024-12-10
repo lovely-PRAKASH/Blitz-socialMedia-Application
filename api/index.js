@@ -5,6 +5,7 @@ import auth from "./routes/auth.js";
 import posts from "./routes/posts.js";
 import comments from "./routes/comments.js";
 import likes from "./routes/likes.js";
+import relationship from "./routes/relationship.js"
 import cookieParser from "cookie-parser";
 import multer from "multer";
 const app = express();
@@ -41,6 +42,7 @@ app.use("/api/users", user)
 app.use("/api/posts", posts)
 app.use("/api/comments", comments)
 app.use("/api/likes", likes)
+app.use("/api/relationships", relationship);
 
 
 
