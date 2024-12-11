@@ -13,12 +13,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { makeRequest } from '../../../axios';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import Update from '../../components/update/Update';
 
 const Profile = () => {
+  const [openUpdate, setOpenUpdate]=useState(false);
   const { currentUser } = useContext(AuthContext);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
-
+console.log("current user",currentUser)
   const { isLoading, error, data } = useQuery({
     queryKey: ['user'],
     queryFn: () => makeRequest.get("/users/find/" + userId).then((res) => (res.data)),
@@ -26,7 +28,7 @@ const Profile = () => {
 
   const { isLoading: rIsLoading, data: relationshipData } = useQuery({
     queryKey: ['relationship'],
-    queryFn: () => makeRequest.get("/relationships?followedUserId" + userId).then((res) => (res.data)),
+    queryFn: () => makeRequest.get("/relationships?followedUserId=" + userId).then((res) => (res.data)),
   });
   console.log("relationships", relationshipData);
 
@@ -55,9 +57,9 @@ const Profile = () => {
     <>
       {isLoading ? "Loading..." : <div className='profile'>
         <div className="images">
-          <img src={data?.coverPic} alt=""
+          <img src={"/upload/"+data?.coverPic} alt=""
             className='cover' />
-          <img src={data?.profilePic} alt=""
+          <img src={"/upload/"+data?.profilePic} alt=""
             className='profilePic' />
         </div>
         <div className="profileContainer">
@@ -107,9 +109,10 @@ const Profile = () => {
               <MoreVertIcon />
             </div>
           </div>
-          <Posts />
+          <Posts userId={userId}/>
         </div>
       </div>}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data}/>}
     </>
   )
 }
