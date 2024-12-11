@@ -57,9 +57,9 @@ console.log("current user",currentUser)
     <>
       {isLoading ? "Loading..." : <div className='profile'>
         <div className="images">
-          <img src={data?.coverPic} alt=""
+          <img src={"/upload/"+data?.coverPic} alt=""
             className='cover' />
-          <img src={data?.profilePic} alt=""
+          <img src={"/upload/"+data?.profilePic} alt=""
             className='profilePic' />
         </div>
         <div className="profileContainer">
