@@ -13,6 +13,7 @@ import { makeRequest } from "../../../axios";
 import { AuthContext } from "../../context/AuthContext";
 const Post = ({ post }) => {
   const [openComments, setOpenComments] = useState(false);
+  const [openMenu, setOpenMenu]=useState(false);
   const { currentUser } = useContext(AuthContext);
   const { isLoading, error, data } = useQuery({
     queryKey: ['likes', post.id],
@@ -33,11 +34,29 @@ const Post = ({ post }) => {
           // Invalidate and refetch
           queryClient.invalidateQueries(["likes"]);
         },
-      
     }
   );
   const handleLike=()=>{
     mutation.mutate(data?.includes(currentUser.id))
+  }
+
+  const deleteMutation = useMutation(
+    {
+
+     mutationFn: (postId) => {
+       return makeRequest.delete("/posts/"+postId);
+      },
+      
+        onSuccess: () => {
+          // Invalidate and refetch
+          queryClient.invalidateQueries(["posts"]);
+        },
+    }
+  );
+
+  const handleDelete=()=>{
+    deleteMutation.mutate(post.id)
+    setOpenMenu(false);
   }
 
   return (
@@ -53,7 +72,8 @@ const Post = ({ post }) => {
               <span>{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
-          <MoreHorizIcon />
+          <MoreHorizIcon onClick={()=>setOpenMenu(!openMenu)}/>
+            {openMenu && <button onClick={handleDelete}>Delete</button>}
         </div>
         <div className="content">
           <p>{post.desc}</p>
