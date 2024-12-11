@@ -112,7 +112,7 @@ console.log("current user",currentUser)
           <Posts userId={userId}/>
         </div>
       </div>}
-      {openUpdate && <Update setOpenUpdate={setOpenUpdate}/>}
+      {openUpdate && <Update setOpenUpdate={setOpenUpdate} user={data}/>}
     </>
   )
 }
